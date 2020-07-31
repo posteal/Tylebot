@@ -1,13 +1,6 @@
-/*
- *
- *   TYLEBOT MAIN FILE
- *
- */
-
-
 let XMLHttpRequest = require('xhr2');
 
-class Tylebot{
+module.exports = class{
 	constructor(token){
 		this.onready = () => console.warn("Not ready function declared!");
 
@@ -74,6 +67,25 @@ class Tylebot{
 		}
 
 
+
+
+
+		const methods = {
+			send: 'sendMessage',
+			delete: 'deleteMessage'
+		}
+
+		for(let i in methods){
+			this[i] = function(options, result = () => undefined){
+				this.method(methods[i], options, result);
+			};
+		};
+
+
+
+
+
+
 		reboot();
 	
 	}
@@ -92,10 +104,29 @@ class Tylebot{
 		});
 	}
 
+
+	method(method, options, result = () => undefined){
+		let optionsString = this.basic + method + "?";
+		for(let i in options){
+			optionsString += i + "=" + encodeURIComponent(options[i]) + "&";
+		}
+
+		optionsString = optionsString.substring(0, optionsString.length - 1);
+
+		let request = new XMLHttpRequest();
+		request.open('GET', optionsString);
+		request.onreadystatechange = function(){
+			if(request.readyState === 4){
+				result(request.responseText);
+			}
+		}
+		request.send();
+	}
+
 }
 
 String.prototype.command = function(){
-	return this.toString().split(' ')[0];
+	return this.toString().toLowerCase().split(' ')[0];
 }
 
 String.prototype.arguments = function(){
