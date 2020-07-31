@@ -1,0 +1,26 @@
+{
+  "name": "tylebot",
+  "version": "1.0.0",
+  "description": "Tylebot is a framework for Telegram bots developer.",
+  "main": "tylebot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/posteal/Tylebot.git"
+  },
+  "keywords": [
+    "telegram",
+    "chatbot",
+    "bot",
+    "getupdates",
+    "api"
+  ],
+  "author": "FFraca",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/posteal/Tylebot/issues"
+  },
+  "homepage": "https://github.com/posteal/Tylebot#readme"
+}
