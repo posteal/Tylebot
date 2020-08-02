@@ -72,7 +72,9 @@ module.exports = class{
 
 		const methods = {
 			send: 'sendMessage',
-			delete: 'deleteMessage'
+			delete: 'deleteMessage',
+			ban: "kickChatMember",
+			mute: 'restrictChatMember'
 		}
 
 		for(let i in methods){
@@ -117,7 +119,7 @@ module.exports = class{
 		request.open('GET', optionsString);
 		request.onreadystatechange = function(){
 			if(request.readyState === 4){
-				result(request.responseText);
+				result(JSON.parse(request.responseText));
 			}
 		}
 		request.send();
@@ -131,4 +133,3 @@ String.prototype.command = function(){
 
 String.prototype.arguments = function(){
 	return this.toString().split(' ').splice(1);
-}
